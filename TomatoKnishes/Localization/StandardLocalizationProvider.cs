@@ -19,9 +19,22 @@ namespace TomatoKnishes.Localization
 
         public abstract IDictionary<T, ILocalizedTextEntry> TextEntries { get; }
 
-        public virtual string RetrieveLocalizedString(T key) =>
+        public virtual ILocalizedTextEntry RetrieveLocalizedEntry(T key, CultureInfo culture = null) =>
             !TextEntries.TryGetValue(key, out ILocalizedTextEntry textEntry)
-                ? key.ToString()
-                : textEntry.GetText(DefaultCulture);
+                ? new StandardLocalizedTextEntry((DefaultCulture, key.ToString()))
+                : textEntry;
+
+        public string RetrieveLocalizedText(T key, CultureInfo culture = null) =>
+            RetrieveLocalizedEntry(key, culture).GetText(GetUsableCulture(key, culture));
+
+        private CultureInfo GetUsableCulture(T key, CultureInfo culture)
+        {
+            culture ??= CultureInfo.CurrentCulture;
+
+            if (!TextEntries[key].LocalizationMap.ContainsKey(culture))
+                culture = DefaultCulture;
+
+            return culture;
+        }
     }
 }

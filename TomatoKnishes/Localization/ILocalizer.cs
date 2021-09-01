@@ -24,13 +24,13 @@ namespace TomatoKnishes.Localization
         void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() where TInner : Enum;
 
         /// <summary>
-        ///     Retrieves localized text.
+        ///     Retrieves a localized text entry.
         /// </summary>
-        ILocalizedTextEntry GetLocalizedText<T>(T key) where T : Enum;
+        ILocalizedTextEntry GetLocalizedTextEntry<T>(T key) where T : Enum;
 
         /// <summary>
-        ///     Retrieves a localized <see cref="string"/>.
+        ///     Retrieves a localized text entry's string value.
         /// </summary>
-        string GetLocalizedTextValue<T>(T key) where T : Enum;
+        string GetLocalizedText<T>(T key) where T : Enum;
     }
 }

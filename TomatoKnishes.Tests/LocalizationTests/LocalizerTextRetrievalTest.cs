@@ -3,6 +3,7 @@
 // GNU General Public License Version 3, 29 June 2007
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using NUnit.Framework;
@@ -50,13 +51,23 @@ namespace TomatoKnishes.Tests.LocalizationTests
             ILocalizer localizer = new KnishesLocalizer();
             localizer.AddProvider<TestTextProvider, TestTextType>();
 
-            Assert.AreSame(localizer.GetLocalizedTextValue(TestTextType.Test1), Test1English);
-            Assert.AreSame(localizer.GetLocalizedTextValue(TestTextType.Test2), Test2English);
+            static void LogAssertAreSame(object obj1, object obj2)
+            {
+                Assert.AreSame(obj1, obj2);
+                Console.WriteLine($"Objects are same: {obj1}, {obj2}");
+            }
+
+            LogAssertAreSame(localizer.GetLocalizedText(TestTextType.Test1), Test1English);
+            LogAssertAreSame(localizer.GetLocalizedText(TestTextType.Test2), Test2English);
+            LogAssertAreSame(localizer.GetLocalizedTextEntry(TestTextType.Test1).GetText(LocalizationConstants.Default), Test1English);
+            LogAssertAreSame(localizer.GetLocalizedTextEntry(TestTextType.Test2).GetText(LocalizationConstants.Default), Test2English);
 
             CultureInfo.CurrentCulture = Spanish;
 
-            Assert.AreSame(localizer.GetLocalizedTextValue(TestTextType.Test1), Test1Spanish);
-            Assert.AreSame(localizer.GetLocalizedTextValue(TestTextType.Test2), Test2Spanish);
+            LogAssertAreSame(localizer.GetLocalizedText(TestTextType.Test1), Test1Spanish);
+            LogAssertAreSame(localizer.GetLocalizedText(TestTextType.Test2), Test2Spanish);
+            LogAssertAreSame(localizer.GetLocalizedTextEntry(TestTextType.Test1).GetText(LocalizationConstants.Default), Test1Spanish);
+            LogAssertAreSame(localizer.GetLocalizedTextEntry(TestTextType.Test2).GetText(LocalizationConstants.Default), Test2Spanish);
 
             Assert.Pass();
         }

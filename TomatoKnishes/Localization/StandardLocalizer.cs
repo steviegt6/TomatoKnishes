@@ -22,11 +22,11 @@ namespace TomatoKnishes.Localization
             ((List<object>) LocalizationProviders).Add(provider);
         }
 
-        public virtual ILocalizedTextEntry GetLocalizedText<T>(T key) where T : Enum =>
-            GetProvider<T>().TextEntries[key];
+        public virtual ILocalizedTextEntry GetLocalizedTextEntry<T>(T key) where T : Enum =>
+            GetProvider<T>().RetrieveLocalizedEntry(key);
 
-        public virtual string GetLocalizedTextValue<T>(T key) where T : Enum =>
-            GetLocalizedText(key).GetText(GetProvider<T>().DefaultCulture);
+        public string GetLocalizedText<T>(T key) where T : Enum =>
+            GetLocalizedTextEntry(key).GetText(GetProvider<T>().DefaultCulture);
 
         public ILocalizationProvider<T> GetProvider<T>() where T : Enum =>
             (ILocalizationProvider<T>) LocalizationProviders.First(x => x is ILocalizationProvider<T>);
