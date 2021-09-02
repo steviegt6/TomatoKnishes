@@ -1,6 +1,5 @@
 ﻿#region License
-// Copyright (C) 2021 Tomat and Contributors
-// GNU General Public License Version 3, 29 June 2007
+// Copyright (C) 2021 Tomat and Contributors, MIT License
 #endregion
 
 using TomatoKnishes.Localization;
@@ -11,7 +10,7 @@ namespace TomatoKnishes.Internals.Localization
     {
         public KnishesLocalizer()
         {
-
+            AddProvider<ConsoleLocalization, ConsoleLocalization.ConsoleText>();
         }
     }
 }
