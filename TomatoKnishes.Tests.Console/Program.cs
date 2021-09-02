@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Spectre.Console;
 using TomatoKnishes.KConsole;
 using TomatoKnishes.KConsole.Options;
+using TomatoKnishes.KConsole.Spectre;
 
 namespace TomatoKnishes.Tests.Console
 {
@@ -15,7 +16,7 @@ namespace TomatoKnishes.Tests.Console
             }
         }
 
-        public sealed class TestConsole : StandardConsoleWindow
+        public sealed class TestConsole : SpectreConsoleWindow
         {
             public override IOptionCollection DefaultOptions { get; } = new StandardOptionCollection("Test prompt!",
                 new TestFallbackCollection(), new PrintOption("Option 1", "Test 1"),
@@ -46,9 +47,9 @@ namespace TomatoKnishes.Tests.Console
             }
         }
 
-        public static IConsoleWindow<ConsoleColor> Console { get; private set; }
+        public static IConsoleWindow<Color> Console { get; private set; }
 
-        public static void Main(string[] args)
+        public static void Main()
         {
             Console = new TestConsole();
             Console.Clear();

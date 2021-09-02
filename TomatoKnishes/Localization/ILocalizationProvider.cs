@@ -28,13 +28,13 @@ namespace TomatoKnishes.Localization
         /// </summary>
         /// <param name="key">The enum key.</param>
         /// <param name="culture">The culture to use. Defaults to <see langword="null"/>, in which case it uses the current program culture.</param>
-        ILocalizedTextEntry RetrieveLocalizedEntry(T key, CultureInfo culture = null);
+        ILocalizedTextEntry RetrieveLocalizedEntry(T key, CultureInfo? culture = null);
 
         /// <summary>
         ///     Retrieves the text value of a localized entry.
         /// </summary>
         /// <param name="key">The enum key.</param>
         /// <param name="culture">The culture to use. Defaults to <see langword="null"/>, in which case it uses the current program culture.</param>
-        string RetrieveLocalizedText(T key, CultureInfo culture = null);
+        string RetrieveLocalizedText(T key, CultureInfo? culture = null);
     }
 }
