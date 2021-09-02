@@ -116,10 +116,10 @@ namespace TomatoKnishes.KConsole.Options
             string text = this.Aggregate(PromptText, (current, option) => current + '\n' + option);
 
             if (DisplayGoBack && PreviousCollectionState is not null)
-                text += $"\n[.] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.GoBackText)}";
+                text += $"\n  [.] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.GoBackText)}";
 
             if (DisplayReturn)
-                text += $"\n[/] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.ReturnText)}";
+                text += $"\n  [/] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.ReturnText)}";
 
             return text;
         }

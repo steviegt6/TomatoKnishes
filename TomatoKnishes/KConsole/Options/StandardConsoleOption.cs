@@ -17,6 +17,6 @@ namespace TomatoKnishes.KConsole.Options
 
         public abstract Task ExecuteAsync();
 
-        public override string ToString() => $"[{Index + 1}] {DisplayText}";
+        public override string ToString() => $"  [{Index + 1}] {DisplayText}";
     }
 }
