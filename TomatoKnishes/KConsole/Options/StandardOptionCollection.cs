@@ -61,47 +61,42 @@ namespace TomatoKnishes.KConsole.Options
                 switch (key)
                 {
                     case null:
-                        window.WriteAndClear(
-                            Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.NullOnlyNumbers),
+                        window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.NullOnlyNumbers), 
                             window.ErrorColor);
                         continue;
 
                     case "/" when DisplayReturn:
-                        window.WriteAndClear(
-                            Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.ReturnedToStart),
+                        window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.ReturnedToStart),
                             window.SuccessColor);
+
                         window.SelectedOptions = window.DefaultOptions;
                         window.SelectedOptions.ListOptions(window);
                         return;
 
                     case "." when DisplayGoBack:
                         if (PreviousCollectionState == null)
-                            window.WriteAndClear(
-                                Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.NoPreviousState),
+                            window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.NoPreviousState),
                                 window.ErrorColor);
                         else
                         {
-                            window.WriteAndClear(
-                                Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.ReturningToPrevious),
+                            window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.ReturningToPrevious),
                                 window.SuccessColor);
+
                             window.WriteOptionsList(PreviousCollectionState);
                         }
-
                         return;
                 }
 
                 if (!int.TryParse(key, out int option))
                 {
-                    window.WriteAndClear(
-                        Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.UnableToParseNumbers),
+                    window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.UnableToParseNumbers),
                         window.ErrorColor);
                     continue;
                 }
 
                 if (option < 1 || option > Count)
                 {
-                    window.WriteAndClear(
-                        Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.NoCorrespondingOptions),
+                    window.WriteAndClear(Knishes.Localizer.GetLocalizedText(ConsoleText.NoCorrespondingOptions),
                         window.ErrorColor);
                     continue;
                 }
@@ -116,10 +111,10 @@ namespace TomatoKnishes.KConsole.Options
             string text = this.Aggregate(PromptText, (current, option) => current + '\n' + option);
 
             if (DisplayGoBack && PreviousCollectionState is not null)
-                text += $"\n  [.] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.GoBackText)}";
+                text += $"\n  [.] {Knishes.Localizer.GetLocalizedText(ConsoleText.GoBackText)}";
 
             if (DisplayReturn)
-                text += $"\n  [/] {Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.ReturnText)}";
+                text += $"\n  [/] {Knishes.Localizer.GetLocalizedText(ConsoleText.ReturnText)}";
 
             return text;
         }

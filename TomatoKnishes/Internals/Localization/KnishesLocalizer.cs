@@ -10,7 +10,7 @@ namespace TomatoKnishes.Internals.Localization
     {
         public KnishesLocalizer()
         {
-            AddProvider<ConsoleLocalization, ConsoleLocalization.ConsoleText>();
+            AddProvider<ConsoleLocalization, ConsoleText>();
         }
     }
 }

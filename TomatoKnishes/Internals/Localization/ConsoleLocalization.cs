@@ -7,24 +7,24 @@ using TomatoKnishes.Localization;
 
 namespace TomatoKnishes.Internals.Localization
 {
-    public class ConsoleLocalization : StandardLocalizationProvider<ConsoleLocalization.ConsoleText>
+    public enum ConsoleText
     {
-        public enum ConsoleText
-        {
-            GoBackText,
-            ReturnText,
-            InvalidInput,
-            GotoPage,
-            DisplayingPage,
-            InvalidEntry,
-            NullOnlyNumbers,
-            ReturnedToStart,
-            NoPreviousState,
-            ReturningToPrevious,
-            UnableToParseNumbers,
-            NoCorrespondingOptions
-        }
+        GoBackText,
+        ReturnText,
+        InvalidInput,
+        GotoPage,
+        DisplayingPage,
+        InvalidEntry,
+        NullOnlyNumbers,
+        ReturnedToStart,
+        NoPreviousState,
+        ReturningToPrevious,
+        UnableToParseNumbers,
+        NoCorrespondingOptions
+    }
 
+    public class ConsoleLocalization : StandardLocalizationProvider<ConsoleText>
+    {
         public override IDictionary<ConsoleText, ILocalizedTextEntry> TextEntries { get; } =
             new Dictionary<ConsoleText, ILocalizedTextEntry>
             {

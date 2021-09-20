@@ -68,7 +68,7 @@ namespace TomatoKnishes.KConsole.Spectre
 
                 localPage.Add((
                     items[i].ToString() ??
-                    Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.InvalidEntry), totalCount));
+                    Knishes.Localizer.GetLocalizedText(ConsoleText.InvalidEntry), totalCount));
 
                 if (localCount != itemsPerPage && i != items.Length - 1)
                     continue;
@@ -85,7 +85,7 @@ namespace TomatoKnishes.KConsole.Spectre
                     break;
 
                 WriteAndClear(
-                    string.Format(Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.DisplayingPage),
+                    string.Format(Knishes.Localizer.GetLocalizedText(ConsoleText.DisplayingPage),
                         selectedPage + 1, pages.Count), Color.Yellow);
 
                 foreach ((string entryName, int entryNumber) in pages[selectedPage])
@@ -98,13 +98,13 @@ namespace TomatoKnishes.KConsole.Spectre
 
                 AskForInput:
                 WriteLine();
-                WriteLine(Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.GotoPage));
+                WriteLine(Knishes.Localizer.GetLocalizedText(ConsoleText.GotoPage));
 
                 string input = AnsiConsole.Ask<string>(string.Empty);
                 if (!int.TryParse(input, out int realInput))
                 {
                     AnsiConsole.Foreground = Color.Red;
-                    WriteLine(Knishes.Localizer.GetLocalizedText(ConsoleLocalization.ConsoleText.InvalidInput));
+                    WriteLine(Knishes.Localizer.GetLocalizedText(ConsoleText.InvalidInput));
                     AnsiConsole.Foreground = Color.White;
                     goto AskForInput;
                 }
