@@ -21,6 +21,9 @@ namespace TomatoKnishes.Localization
             ((List<object>) LocalizationProviders).Add(provider);
         }
 
+        public virtual T GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum =>
+            (T) LocalizationProviders.First(x => x.GetType() == typeof(T));
+
         public virtual ILocalizedTextEntry GetLocalizedTextEntry<T>(T key) where T : Enum =>
             GetProvider<T>().RetrieveLocalizedEntry(key);
 

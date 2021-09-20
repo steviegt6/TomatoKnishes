@@ -22,6 +22,8 @@ namespace TomatoKnishes.Localization
         /// </summary>
         void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() where TInner : Enum;
 
+        T GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum;
+
         /// <summary>
         ///     Retrieves a localized text entry.
         /// </summary>

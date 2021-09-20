@@ -8,9 +8,8 @@ namespace TomatoKnishes.Internals.Localization
 {
     public sealed class KnishesLocalizer : StandardLocalizer
     {
-        public KnishesLocalizer()
+        internal KnishesLocalizer()
         {
-            AddProvider<ConsoleLocalization, ConsoleText>();
         }
     }
 }

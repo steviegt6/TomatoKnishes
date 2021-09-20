@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace TomatoKnishes.Localization
 {
@@ -30,11 +31,26 @@ namespace TomatoKnishes.Localization
         /// <param name="culture">The culture to use. Defaults to <see langword="null"/>, in which case it uses the current program culture.</param>
         ILocalizedTextEntry RetrieveLocalizedEntry(T key, CultureInfo? culture = null);
 
-        /// <summary>
-        ///     Retrieves the text value of a localized entry.
-        /// </summary>
-        /// <param name="key">The enum key.</param>
-        /// <param name="culture">The culture to use. Defaults to <see langword="null"/>, in which case it uses the current program culture.</param>
-        string RetrieveLocalizedText(T key, CultureInfo? culture = null);
+        public string ToCollectedString()
+        {
+            static string WriteEntry(ILocalizedTextEntry entry)
+            {
+                List<string> list = new();
+
+                foreach ((CultureInfo culture, string value) in entry.LocalizationMap)
+                {
+                    list.Add($"{culture} -> {value}");
+                }
+
+                return string.Join(", ", list);
+            }
+
+            StringBuilder builder = new();
+
+            foreach ((T key, ILocalizedTextEntry value) in TextEntries)
+                builder.AppendLine($"{key}: {WriteEntry(value)}");
+
+            return builder.ToString();
+        }
     }
 }

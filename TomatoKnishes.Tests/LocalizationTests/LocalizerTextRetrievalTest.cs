@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using NUnit.Framework;
+using TomatoKnishes.Internals;
 using TomatoKnishes.Internals.Localization;
 using TomatoKnishes.Localization;
 
@@ -47,7 +48,7 @@ namespace TomatoKnishes.Tests.LocalizationTests
         [Test]
         public void TextRetrievalTest()
         {
-            ILocalizer localizer = new KnishesLocalizer();
+            ILocalizer localizer = Knishes.Localizer;
             localizer.AddProvider<TestTextProvider, TestTextType>();
 
             static void LogAssertAreSame(object obj1, object obj2)
@@ -69,6 +70,16 @@ namespace TomatoKnishes.Tests.LocalizationTests
             LogAssertAreSame(localizer.GetLocalizedTextEntry(TestTextType.Test2).GetText(LocalizationConstants.Default), Test2Spanish);
 
             Assert.Pass();
+        }
+
+        [Test]
+        public void TextPrintingTest()
+        {
+            ILocalizer localizer = Knishes.Localizer;
+            localizer.AddProvider<TestTextProvider, TestTextType>();
+            ILocalizationProvider<TestTextType> provider = localizer.GetProvider<TestTextProvider, TestTextType>();
+
+            Console.WriteLine(provider.ToCollectedString());
         }
     }
 }
