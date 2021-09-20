@@ -16,7 +16,7 @@ namespace TomatoKnishes.Tests.LocalizationTests
         public const string Test1English = "This is a test.";
         public const string Test2English = "This is a second test.";
         public const string Test1Spanish = "Esto es una prueba.";
-        public const string Test2Spanish = "Esta es una segunda prueba.";
+        public const string Test2Spanish = "Esto es una segunda prueba.";
 
         public static readonly CultureInfo Spanish = new("es");
 
