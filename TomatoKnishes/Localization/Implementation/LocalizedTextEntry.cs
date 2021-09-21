@@ -5,18 +5,18 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace TomatoKnishes.Localization
+namespace TomatoKnishes.Localization.Implementation
 {
-    public class StandardLocalizedTextEntry : ILocalizedTextEntry
+    public class LocalizedTextEntry : ILocalizedTextEntry
     {
         public virtual IDictionary<CultureInfo, string> LocalizationMap { get; }
 
-        public StandardLocalizedTextEntry(IDictionary<CultureInfo, string> localizationMap)
+        public LocalizedTextEntry(IDictionary<CultureInfo, string> localizationMap)
         {
             LocalizationMap = localizationMap;
         }
 
-        public StandardLocalizedTextEntry(params (CultureInfo, string)[] localizationTupleCollection)
+        public LocalizedTextEntry(params (CultureInfo, string)[] localizationTupleCollection)
         {
             Dictionary<CultureInfo, string> localizationMap = new();
 

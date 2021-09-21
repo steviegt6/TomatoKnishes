@@ -6,13 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace TomatoKnishes.Localization
+namespace TomatoKnishes.Localization.Implementation
 {
     /// <summary>
     ///     Standard implementation of <see cref="ILocalizationProvider{T}"/>.
     /// </summary>
     /// <typeparam name="T">Enum.</typeparam>
-    public abstract class StandardLocalizationProvider<T> : ILocalizationProvider<T> where T : Enum
+    public abstract class LocalizationProvider<T> : ILocalizationProvider<T> where T : Enum
     {
         public virtual CultureInfo DefaultCulture => LocalizationConstants.Default;
 
@@ -20,7 +20,7 @@ namespace TomatoKnishes.Localization
 
         public virtual ILocalizedTextEntry RetrieveLocalizedEntry(T key, CultureInfo? culture = null) =>
             !TextEntries.TryGetValue(key, out ILocalizedTextEntry? textEntry)
-                ? new StandardLocalizedTextEntry((culture ?? DefaultCulture, key.ToString()))
+                ? new LocalizedTextEntry((culture ?? DefaultCulture, key.ToString()))
                 : textEntry;
     }
 }

@@ -6,20 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TomatoKnishes.Localization
+namespace TomatoKnishes.Localization.Implementation
 {
     /// <summary>
     ///     Standard <see cref="ILocalizer"/> implementation. Override this in your assembly. Can be used several times.
     /// </summary>
-    public abstract class StandardLocalizer : ILocalizer
+    public abstract class Localizer : ILocalizer
     {
         public virtual IEnumerable<object> LocalizationProviders { get; } = new List<object>();
 
-        public virtual void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() where TInner : Enum
-        {
-            T provider = new();
-            ((List<object>) LocalizationProviders).Add(provider);
-        }
+        public virtual void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() 
+            where TInner : Enum =>
+            ((List<object>) LocalizationProviders).Add(new T());
 
         public virtual T GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum =>
             (T) LocalizationProviders.First(x => x.GetType() == typeof(T));

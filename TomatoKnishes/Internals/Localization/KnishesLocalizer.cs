@@ -3,10 +3,11 @@
 #endregion
 
 using TomatoKnishes.Localization;
+using TomatoKnishes.Localization.Implementation;
 
 namespace TomatoKnishes.Internals.Localization
 {
-    public sealed class KnishesLocalizer : StandardLocalizer
+    public sealed class KnishesLocalizer : Localizer
     {
         internal KnishesLocalizer()
         {

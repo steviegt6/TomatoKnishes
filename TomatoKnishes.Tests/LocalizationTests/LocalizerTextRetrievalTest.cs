@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using NUnit.Framework;
 using TomatoKnishes.Internals;
-using TomatoKnishes.Internals.Localization;
 using TomatoKnishes.Localization;
+using TomatoKnishes.Localization.Implementation;
 
 namespace TomatoKnishes.Tests.LocalizationTests
 {
@@ -27,20 +27,24 @@ namespace TomatoKnishes.Tests.LocalizationTests
             Test2
         }
 
-        public class TestTextProvider : StandardLocalizationProvider<TestTextType>
+        public class TestTextProvider : LocalizationProvider<TestTextType>
         {
             public override IDictionary<TestTextType, ILocalizedTextEntry> TextEntries { get; } =
                 new Dictionary<TestTextType, ILocalizedTextEntry>
                 {
                     {
                         TestTextType.Test1,
-                        new StandardLocalizedTextEntry((LocalizationConstants.English, Test1English),
-                            (Spanish, Test1Spanish))
+                        new LocalizedTextEntry(
+                            (LocalizationConstants.English, Test1English),
+                            (Spanish, Test1Spanish)
+                        )
                     },
                     {
                         TestTextType.Test2,
-                        new StandardLocalizedTextEntry((LocalizationConstants.English, Test2English),
-                            (Spanish, Test2Spanish))
+                        new LocalizedTextEntry(
+                            (LocalizationConstants.English, Test2English),
+                            (Spanish, Test2Spanish)
+                        )
                     }
                 };
         }
