@@ -86,6 +86,7 @@ namespace TomatoKnishes.SpectreFx
                 IConsole? cliConsole = command is IConsoleIdentity id ? id.GetConsole() : null;
 
                 command.ExecuteAsync(cliConsole!);
+                Window.ClearConsole();
                 break;
             }
         }
