@@ -3,7 +3,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
 namespace TomatoKnishes.Localization
 {
@@ -13,16 +12,11 @@ namespace TomatoKnishes.Localization
     public interface ILocalizer
     {
         /// <summary>
-        ///     Registered localization provider instances.
-        /// </summary>
-        IEnumerable<object> LocalizationProviders { get; }
-
-        /// <summary>
         ///     Add a provider instance.
         /// </summary>
         void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() where TInner : Enum;
 
-        T GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum;
+        T? GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum;
 
         /// <summary>
         ///     Retrieves a localized text entry.

@@ -2,20 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="CliFx" Version="2.0.6" />
+    <PackageReference Include="Spectre.Console" Version="0.41.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TomatoKnishes\TomatoKnishes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Identities\" />
+    <Folder Include="Localization\" />
   </ItemGroup>
 
 </Project>

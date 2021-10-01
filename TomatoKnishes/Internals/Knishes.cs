@@ -4,6 +4,7 @@
 
 using System;
 using TomatoKnishes.Internals.Localization;
+using TomatoKnishes.Localization;
 
 namespace TomatoKnishes.Internals
 {
@@ -16,8 +17,9 @@ namespace TomatoKnishes.Internals
             Localizer = new KnishesLocalizer();
         }
 
-        public static void GetLocalizedText<T>(T key) where T : Enum => Localizer.GetLocalizedText(key);
+        public static string GetLocalizedText<T>(T key) where T : Enum => Localizer.GetLocalizedText(key);
 
-        public static void GetLocalizedTextEntry<T>(T key) where T : Enum => Localizer.GetLocalizedTextEntry(key);
+        public static ILocalizedTextEntry GetLocalizedTextEntry<T>(T key) where T : Enum =>
+            Localizer.GetLocalizedTextEntry(key);
     }
 }

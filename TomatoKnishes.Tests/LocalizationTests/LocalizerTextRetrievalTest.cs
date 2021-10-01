@@ -81,9 +81,9 @@ namespace TomatoKnishes.Tests.LocalizationTests
         {
             ILocalizer localizer = Knishes.Localizer;
             localizer.AddProvider<TestTextProvider, TestTextType>();
-            ILocalizationProvider<TestTextType> provider = localizer.GetProvider<TestTextProvider, TestTextType>();
+            ILocalizationProvider<TestTextType>? provider = localizer.GetProvider<TestTextProvider, TestTextType>();
 
-            Console.WriteLine(provider.ToCollectedString());
+            Console.WriteLine(provider?.ToCollectedString());
         }
     }
 }

@@ -13,14 +13,24 @@ namespace TomatoKnishes.Localization.Implementation
     /// </summary>
     public abstract class Localizer : ILocalizer
     {
+        /// <summary>
+        ///     Registered localization provider instances.
+        /// </summary>
         public virtual IEnumerable<object> LocalizationProviders { get; } = new List<object>();
 
         public virtual void AddProvider<T, TInner>() where T : ILocalizationProvider<TInner>, new() 
             where TInner : Enum =>
             ((List<object>) LocalizationProviders).Add(new T());
 
-        public virtual T GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum =>
-            (T) LocalizationProviders.First(x => x.GetType() == typeof(T));
+        public virtual T? GetProvider<T, TInner>() where T : ILocalizationProvider<TInner> where TInner : Enum
+        {
+            object? provider = LocalizationProviders.FirstOrDefault(x => x.GetType() == typeof(T));
+
+            if (provider is not null)
+                return (T) provider;
+
+            return default;
+        }
 
         public virtual ILocalizedTextEntry GetLocalizedTextEntry<T>(T key) where T : Enum =>
             GetProvider<T>().RetrieveLocalizedEntry(key);
