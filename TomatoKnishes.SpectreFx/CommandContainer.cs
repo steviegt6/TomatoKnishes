@@ -85,7 +85,7 @@ namespace TomatoKnishes.SpectreFx
                 CliFx.ICommand command = Commands[option - 1];
                 IConsole? cliConsole = command is IConsoleIdentity id ? id.GetConsole() : null;
 
-                Commands[option].ExecuteAsync(cliConsole!);
+                command.ExecuteAsync(cliConsole!);
                 break;
             }
         }
@@ -109,7 +109,7 @@ namespace TomatoKnishes.SpectreFx
             }
 
             for (int i = 0; i < Commands.Count; i++)
-                AppendCommand(Commands[i], i.ToString());
+                AppendCommand(Commands[i], (i + 1).ToString());
 
             if (AllowGoBack)
                 AppendCommand(new GoBackCommand(), ".");
