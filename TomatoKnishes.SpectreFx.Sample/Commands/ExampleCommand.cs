@@ -23,6 +23,14 @@ namespace TomatoKnishes.SpectreFx.Sample.Commands
         {
             AnsiConsole.WriteLine("One, two, three, testing... testing...");
 
+            string answer = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                .Title("Pick [bold]one[/]:")
+                .PageSize(4)
+                .MoreChoicesText("Scroll down for more choices!")
+                .AddChoices("The illusion of choice.", "Pick me.", "No, me!", "Hi. :)", "Hello, world!"));
+
+            AnsiConsole.WriteLine("You answered: " + answer);
+
             await Task.CompletedTask;
         }
     }
