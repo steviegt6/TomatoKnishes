@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CliFx;
 using Spectre.Console;
 using TomatoKnishes.SpectreFx.Sample.Commands;
+// ReSharper disable StringLiteralTypo
 
 namespace TomatoKnishes.SpectreFx.Sample
 {
@@ -22,9 +23,9 @@ namespace TomatoKnishes.SpectreFx.Sample
 
             AnsiConsole.WriteLine("Welcome to TomatoKnishes.SpectreFx!");
             AnsiConsole.MarkupLine($"This library combines [#{Color.SkyBlue1.ToHex()}]Spectre.Console[/] & [#{Color.Gold1.ToHex()}]CliFx[/].");
-            AnsiConsole.MarkupLine("It allows for making console programs with CLI and UI support! :red_heart: (emojis won't render in some terminals)");
+            AnsiConsole.MarkupLine("It allows for making console programs with CL and CLI support! :red_heart: (emojis won't render in some terminals)");
             AnsiConsole.WriteLine();
-            AnsiConsole.MarkupLine("[bold]Feel[/] [italic]free[/] [slowblink]to[/] [invert]use[/] [underline]Markup[/] [rapidblink]as[/] [strikethrough]well[/]!");
+            AnsiConsole.MarkupLine("[bold]Feel[/] [italic]free[/] [slowblink]to[/] [invert]use[/] [underline]Markup[/] [dim]as[/] [strikethrough]well[/]!");
 
             postWrite?.Invoke();
         }
