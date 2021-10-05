@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CliFx;
 using Spectre.Console;
 
@@ -28,20 +29,20 @@ namespace TomatoKnishes.SpectreFx
             }
         }
 
-        public virtual void WriteFullConsole(Action? preWrite = null, Action? postWrite = null)
+        public virtual async Task WriteFullConsole(Action? preWrite = null, Action? postWrite = null)
         {
             WriteStaticConsole(preWrite, postWrite);
-            CommandSet.ListenForInput();
+            await CommandSet.ListenForInput();
         }
 
         public abstract void WriteStaticConsole(Action? preWrite = null, Action? postWrite = null);
 
-        public virtual void ClearConsole(string text = "", Color? writeColor = null, Action? preWrite = null,
+        public virtual async Task ClearConsole(string text = "", Color? writeColor = null, Action? preWrite = null,
             Action? postWrite = null)
         {
             AnsiConsole.Clear();
 
-            WriteFullConsole(preWrite, () =>
+            await WriteFullConsole(preWrite, () =>
             {
                 Color prior = AnsiConsole.Foreground;
 

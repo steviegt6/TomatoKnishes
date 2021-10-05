@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CliFx.Infrastructure;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -34,7 +35,7 @@ namespace TomatoKnishes.SpectreFx
             Window = window;
         }
 
-        public virtual void ListenForInput()
+        public virtual async Task ListenForInput()
         {
             while (true)
             {
@@ -47,47 +48,47 @@ namespace TomatoKnishes.SpectreFx
                 switch (key)
                 {
                     case null:
-                        Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NullOnlyNumbers), Color.Red);
+                        await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NullOnlyNumbers), Color.Red);
                         continue;
 
                     case "." when AllowGoBack:
                         if (PreviousContainer is null)
-                            Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NoPreviousState), Color.Red);
+                            await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NoPreviousState), Color.Red);
                         else
                         {
-                            Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.ReturningToPrevious),
+                            await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.ReturningToPrevious),
                                 Color.Green);
                             Window.CommandSet = PreviousContainer;
-                            Window.CommandSet.ListenForInput();
+                            await Window.CommandSet.ListenForInput();
                         }
 
                         return;
 
                     case "/" when AllowReturn:
-                        Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.ReturnedToStart), Color.Green);
+                        await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.ReturnedToStart), Color.Green);
                         Window.CommandSet = Window.DefaultCommandSet;
-                        Window.CommandSet.ListenForInput();
+                        await Window.CommandSet.ListenForInput();
                         return;
                 }
 
                 if (!int.TryParse(key, out int option))
                 {
-                    Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.AllowOnlyNumbers), Color.Red);
+                    await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.AllowOnlyNumbers), Color.Red);
                     continue;
                 }
 
                 if (option < 1 || option > Commands.Count)
                 {
-                    Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NoCorresponding), Color.Red);
+                    await Window.ClearConsole(SpectreFxLocalization.Get(SpectreFxType.NoCorresponding), Color.Red);
                     continue;
                 }
 
                 CliFx.ICommand command = Commands[option - 1];
                 IConsole? cliConsole = command is IConsoleIdentity id ? id.GetConsole() : null;
 
-                command.ExecuteAsync(cliConsole!);
-                Window.ClearConsole();
-                break;
+                await command.ExecuteAsync(cliConsole!);
+                await Window.ClearConsole();
+                // break;
             }
         }
 
